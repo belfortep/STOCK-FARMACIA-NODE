@@ -6,6 +6,7 @@ const { connectDB } = require('./db/db');
 const solidRoute = require('./routes/solid');
 const liquidRoute = require('./routes/liquid');
 const psychoRoute = require('./routes/psycho');
+const cors = require('cors');
 
 //------------------------------CONFIG------------------------------
 
@@ -14,6 +15,8 @@ dotenv.config();
 app.set('port', process.env.PORT || 4000);
 
 //------------------------------MIDDLEWARES------------------------------
+
+app.use(cors());
 
 app.use(express.json());
 
