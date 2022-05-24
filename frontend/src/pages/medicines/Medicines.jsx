@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import {Link} from 'react-router-dom';
 export const Medicines = () => {
 
   const [solids, setSolids] = useState([]);
@@ -33,20 +34,23 @@ export const Medicines = () => {
   return (
     <>
       <h1>Medicines</h1>
+      <h2>Solids</h2>
       <div>
         <ul>
           {solids.map(solid =>(
-            <li key={solid._id}>{solid.name}</li>
+            <Link to={'/lista/S,' + solid._id}><li key={solid._id}>{solid.name}</li></Link>
           ))}
         </ul>
+        <h2>Liquid</h2>
         <ul>
           {liquids.map(liquid =>(
-            <li key={liquid._id}>{liquid.name}</li>
+            <Link to={'/lista/L,' + liquid._id}><li key={liquid._id}>{liquid.name}</li></Link>
           ))}
         </ul>
+        <h2>Psycho</h2>
         <ul>
           {psychos.map(psycho =>(
-            <li key={psycho._id}>{psycho.name}</li>
+            <Link to={'/lista/P,' + psycho._id}><li key={psycho._id}>{psycho.name}</li></Link>
           ))}
         </ul>
       </div>

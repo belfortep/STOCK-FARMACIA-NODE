@@ -3,9 +3,9 @@ const { getAllPsychos, createPsycho, getPsychoById, deletePsycho, updatePsycho }
 const router = Router();
 const { verifyUser } = require('../util/verifyToken');
 
-router.get('/', verifyUser, getAllPsychos);
+router.get('/', getAllPsychos);
 router.post('/', verifyUser, createPsycho);
-router.get('/:id', verifyUser, getPsychoById);
+router.get('/:id', getPsychoById);
 router.delete('/:id', verifyUser, deletePsycho);
 router.put('/:id', verifyUser, updatePsycho);
 
