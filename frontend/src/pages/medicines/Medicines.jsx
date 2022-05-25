@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom';
+import { Navbar } from '../../components/Navbar/Navbar'
+import { Footer } from '../../components/Footer/Footer'
 export const Medicines = () => {
 
   const [solids, setSolids] = useState([]);
@@ -33,6 +35,7 @@ export const Medicines = () => {
 
   return (
     <>
+    <Navbar/>
       <h1>Medicines</h1>
       <h2>Solids</h2>
       <div>
@@ -54,6 +57,7 @@ export const Medicines = () => {
           ))}
         </ul>
       </div>
+      <Footer/>
     </>
   )
 }

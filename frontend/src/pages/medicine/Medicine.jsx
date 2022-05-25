@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-
+import { Navbar } from '../../components/Navbar/Navbar'
+import { Footer } from '../../components/Footer/Footer'
 export const Medicine = () => {
 
   const [medicine, setMedicine] = useState({});
@@ -42,8 +43,10 @@ export const Medicine = () => {
 
   return (
     <>
+    <Navbar/>
       <h1>Medicine</h1>
       {found ? medicine.name : <div>Not found</div>}
+      <Footer/>
     </>
   )
 }
