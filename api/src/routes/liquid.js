@@ -3,10 +3,10 @@ const { getAllLiquids, createLiquid, getLiquidById, deleteLiquid, updateLiquid }
 const router = Router();
 const { verifyUser } = require('../util/verifyToken');
 router.get('/', getAllLiquids);
-router.post('/', verifyUser, createLiquid);
+router.post('/', createLiquid);
 router.get('/:id', getLiquidById);
-router.delete('/:id', verifyUser, deleteLiquid);
-router.put('/:id', verifyUser, updateLiquid);
+router.delete('/:id', deleteLiquid);
+router.put('/:id', updateLiquid);
 
 module.exports = router
 

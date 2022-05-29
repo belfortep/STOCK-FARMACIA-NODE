@@ -8,6 +8,7 @@ import { Medicines } from './pages/medicines/Medicines';
 import { Home } from './pages/home/Home';
 import { Register } from './pages/register/Register';
 import { Login } from './pages/login/Login';
+import { CreateMedicine } from './pages/createMedicine/CreateMedicine';
 
 
 
@@ -21,6 +22,8 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/lista/:id' element={<Medicine />} />
+          <Route path='/agregar' element={<CreateMedicine/>}/>
+          <Route path='/agregar/:id' element={<CreateMedicine/>} />
         </Routes>
       </BrowserRouter>
     </>

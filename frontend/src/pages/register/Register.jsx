@@ -1,12 +1,31 @@
 import React from 'react'
-import { Navbar } from '../../components/Navbar/Navbar'
-import { Footer } from '../../components/Footer/Footer'
+
+import { Link } from 'react-router-dom';
+import './register.css'
 export const Register = () => {
   return (
     <>
-      <Navbar/>
-      <div>Register</div>
-      <Footer/>
+      <div className="login">
+        <div className="loginWrapper">
+          <div className="loginLeft">
+            <h3 className="loginLogo">Stock Farmacia</h3>
+            <span className="loginDesc">
+              Sistema de manejo de Stock de medicamentos
+            </span>
+          </div>
+          <div className="loginRight">
+            <form className="loginBox">
+              <input placeholder="Email" type="email" required className="loginInput" />
+              <input placeholder="Username" type="text" required className="loginInput" />
+              <input placeholder="Password" type="password" minLength="6" required className="loginInput" />
+              <input placeholder="Password again" type="password" minLength="6" required className="loginInput" />
+              <button className="loginButton" type='submit'>Register</button>
+              <span className="loginForgot"></span>
+              <Link to={'/login/'} className="loginRegisterButton">Tienes una cuenta?</Link>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

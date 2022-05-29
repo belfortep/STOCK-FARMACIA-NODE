@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { Navbar } from '../../components/Navbar/Navbar'
 import { Footer } from '../../components/Footer/Footer'
+import Moment from 'react-moment'
+
 export const Medicine = () => {
 
   const [medicine, setMedicine] = useState({});
@@ -45,7 +47,17 @@ export const Medicine = () => {
     <>
     <Navbar/>
       <h1>Medicine</h1>
-      {found ? medicine.name : <div>Not found</div>}
+      {found ? 
+      <ul>
+        <li>{medicine.name}</li>
+        {medicine.freeSale ? <li>Venta libre</li> : <></>}
+        <li>{medicine.quantity}</li>
+        <li><Moment format='MM/YYYY'>{medicine.expiredDate}</Moment></li>
+      </ul>
+      
+      
+      
+      : <div>Not found</div>}
       <Footer/>
     </>
   )

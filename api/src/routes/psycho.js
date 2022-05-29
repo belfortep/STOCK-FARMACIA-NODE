@@ -4,10 +4,10 @@ const router = Router();
 const { verifyUser } = require('../util/verifyToken');
 
 router.get('/', getAllPsychos);
-router.post('/', verifyUser, createPsycho);
+router.post('/', createPsycho);
 router.get('/:id', getPsychoById);
-router.delete('/:id', verifyUser, deletePsycho);
-router.put('/:id', verifyUser, updatePsycho);
+router.delete('/:id', deletePsycho);
+router.put('/:id', updatePsycho);
 
 module.exports = router
 

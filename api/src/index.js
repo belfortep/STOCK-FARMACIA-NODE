@@ -6,6 +6,7 @@ const { connectDB } = require('./db/db');
 const solidRoute = require('./routes/solid');
 const liquidRoute = require('./routes/liquid');
 const psychoRoute = require('./routes/psycho');
+const authRoute = require('./routes/auth');
 const cors = require('cors');
 
 //------------------------------CONFIG------------------------------
@@ -31,6 +32,8 @@ app.use('/api/solid', solidRoute);
 app.use('/api/liquid', liquidRoute);
 
 app.use('/api/psycho', psychoRoute);
+
+app.use('/auth/', authRoute);
 
 //------------------------------SERVER------------------------------
 
