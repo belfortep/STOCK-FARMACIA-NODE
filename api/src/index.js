@@ -7,6 +7,7 @@ const solidRoute = require('./routes/solid');
 const liquidRoute = require('./routes/liquid');
 const psychoRoute = require('./routes/psycho');
 const authRoute = require('./routes/auth');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 //------------------------------CONFIG------------------------------
@@ -20,6 +21,8 @@ app.set('port', process.env.PORT || 4000);
 app.use(cors());
 
 app.use(express.json());
+
+app.use(cookieParser());
 
 //------------------------------DB------------------------------
 

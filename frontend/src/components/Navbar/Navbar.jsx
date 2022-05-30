@@ -1,7 +1,17 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, { useContext } from 'react'
+import {Link, useNavigate} from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
 
 export const Navbar = () => {
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleClick = (e) =>{
+    e.preventDefault();
+    dispatch({type: 'LOGOUT'});
+    navigate('/login');
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -19,6 +29,9 @@ export const Navbar = () => {
             </li>
             <li className="nav-item">
             <Link className="nav-link" to={'/login'}>Login</Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link"  onClick={handleClick} to={'/'}>Logout</Link>
             </li>
           </ul>
         </div>

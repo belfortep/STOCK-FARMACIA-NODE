@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom';
@@ -6,23 +6,25 @@ import { Navbar } from '../../components/Navbar/Navbar'
 import { Footer } from '../../components/Footer/Footer'
 import Moment from 'react-moment'
 import moment from 'moment';
+import { AuthContext } from '../../context/AuthContext';
 export const Medicines = () => {
   const [solids, setSolids] = useState([]);
   const [liquids, setLiquids] = useState([]);
   const [psychos, setPsychos] = useState([]);
-
+  const { user } = useContext(AuthContext);
+  
   const fetchSolid = async () =>{
-    const res = await axios.get('http://localhost:4000/api/solid');
+    const res = await axios.get('/api/solid');
     setSolids(res.data);
   };
 
   const fetchLiquid = async () =>{
-    const res = await axios.get('http://localhost:4000/api/liquid');
+    const res = await axios.get('/api/liquid');
     setLiquids(res.data);
   };
 
   const fetchPsycho = async () =>{
-    const res = await axios.get('http://localhost:4000/api/psycho');
+    const res = await axios.get('/api/psycho');
     setPsychos(res.data);
   };
 
@@ -33,18 +35,20 @@ export const Medicines = () => {
   }
 
   useEffect(()=>{
-
-    fetchMedicines();
+    if(user){
+      fetchMedicines();
+    }
+    
 
   }, []);
 
   const handleDelete = async (id, type) =>{
     if(type === 'S'){
-      await axios.delete('http://localhost:4000/api/solid/' + id);
+      await axios.delete('/api/solid/' + id);
     }else if (type === 'L'){
-      await axios.delete('http://localhost:4000/api/liquid/' + id);
+      await axios.delete('/api/liquid/' + id);
     }else if (type === 'P'){
-      await axios.delete('http://localhost:4000/api/psycho/' + id);
+      await axios.delete('/api/psycho/' + id);
     }
     
     fetchMedicines();
@@ -52,7 +56,7 @@ export const Medicines = () => {
 
   return (
     <>
-    <Navbar/>
+    {user ? <><Navbar/>
       <h1>Medicamentos</h1>
       <h2>Solidos</h2>
       <div>
@@ -114,7 +118,7 @@ export const Medicines = () => {
           ))}
         </ul>
       </div>
-      <Footer/>
+      <Footer/></> : <div><Navbar/>Login first</div>}
     </>
   )
 }

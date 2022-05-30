@@ -8,7 +8,7 @@ const verifyToken = (req, res, next) => {
         return res.status(HttpCodesEnum.FORBBIDEN).send('Login first');
     }
 
-    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+    jwt.verify(token, process.env.JWT, (err, user) => {
         if (err) {
             return res.status(HttpCodesEnum.FORBBIDEN).send('Token not valid');
         }

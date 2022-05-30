@@ -35,10 +35,10 @@ const login = async (req, res) => {
 
         const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password);
         if (!isPasswordCorrect) return res.status(HttpCodesEnum.NOT_FOUND).send('Incorrect password or user');
-        const { password, isAdmin, ...otherDetails } = user._doc;
-        const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.SECRET_KEY)
 
-        return res.cookie("access_token", token, { httpOnly: true }).status(HttpCodesEnum.OK).json({ ...otherDetails });
+        const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT)
+        const { password, isAdmin, ...otherDetails } = user._doc;
+        return res.cookie("access_token", token, { httpOnly: true }).status(HttpCodesEnum.OK).json({ details: { ...otherDetails }, isAdmin });
 
     } catch (err) {
         return res.status(HttpCodesEnum.SERVER_INTERNAL_ERROR).json({ message: err.message });

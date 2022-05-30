@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { Navbar } from '../../components/Navbar/Navbar'
 import { Footer } from '../../components/Footer/Footer'
 import Moment from 'react-moment'
+import { AuthContext } from '../../context/AuthContext';
 
 export const Medicine = () => {
 
   const [medicine, setMedicine] = useState({});
   const [found, setFound] = useState(false);
-
+  const {user} = useContext(AuthContext);
   const params = useParams()
   const type = params.id.split(',');
   useEffect(()=>{
@@ -19,11 +20,11 @@ export const Medicine = () => {
       let res;
       try{
         if(type[0] === 'S'){
-          res = await axios.get('http://localhost:4000/api/solid/' + type[1]);
+          res = await axios.get('/api/solid/' + type[1]);
         }else if(type[0] === 'L'){
-          res = await axios.get('http://localhost:4000/api/liquid/' + type[1]);
+          res = await axios.get('/api/liquid/' + type[1]);
         }else if(type[0] === 'P'){
-          res = await axios.get('http://localhost:4000/api/psycho/' + type[1]);
+          res = await axios.get('/api/psycho/' + type[1]);
         }
         if(res.data !== null){
           await setMedicine(res.data);
@@ -38,7 +39,10 @@ export const Medicine = () => {
        setFound(false);
       }
     };
-    fetchMedicine();
+    if(user){
+      fetchMedicine();
+    }
+    
     
   }, [found]);
   
