@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 import { Medicine } from './pages/medicine/Medicine';
 import { Medicines } from './pages/medicines/Medicines';
-import { Home } from './pages/home/Home';
+//import { Home } from './pages/home/Home';
 //import { Register } from './pages/register/Register';
 import { Login } from './pages/login/Login';
 import { CreateMedicine } from './pages/createMedicine/CreateMedicine';
@@ -17,7 +17,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />} />
+          {/*<Route path='/' element={<Home />} />*/}
           <Route path='/lista' element={<Medicines />} />
           {/**<Route path='/register' element={<Register />} /> */}
           <Route path='/login' element={<Login />} />

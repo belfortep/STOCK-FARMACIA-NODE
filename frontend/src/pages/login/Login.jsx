@@ -24,7 +24,7 @@ export const Login = () => {
     try {
       const res = await axios.post("/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-      navigate("/")
+      navigate('/lista')
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
@@ -32,29 +32,36 @@ export const Login = () => {
 
 
   return (
-    <div className="login">
-      <div className="lContainer">
-        <form onSubmit={handleSubmit}>
+    <div className="center-screen container">
+     <div className="row">
+      <div className="col s5">
+        <div className="card">
+          <div className="card-content">
+
+        <form  className="form-control" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="username"
           id="username"
           onChange={handleChange}
-          className="lInput"
+          className="form-control"
         />
         <input
           type="password"
           placeholder="password"
           id="password"
           onChange={handleChange}
-          className="lInput"
+          className="form-control"
         />
-        <button disabled={loading} className="lButton">
+        <button disabled={loading} className="btn btn-secondary">
           Login
         </button>
         {error && <span>{error.message}</span>}
         </form>
-      </div>
+        </div>
+        </div>
+        </div>
+        </div>
     </div>
   );
 };
