@@ -70,10 +70,9 @@ export const Medicines = () => {
             <Moment date={moment(solid.expiredDate).add(1, 'd')} format='MM/YYYY'/>
             </li>
             <li>
-            <Link to={'/lista/S,' + solid._id}>{solid.name}</Link>
-            <button onClick={()=>handleDelete(solid._id, 'S')}>🗑️</button>
-            
-            <Link to={'/agregar/S,' + solid._id}>🔄</Link>
+            <Link to={'/S,' + solid._id}>{solid.name}</Link>
+            <button className='btn btn-danger' onClick={()=>handleDelete(solid._id, 'S')}>🗑️</button>
+            <Link className='btn btn-secondary' to={'/agregar/S,' + solid._id}>🔄</Link>
             </li>
             {new Date(solid.expiredDate) <= new Date().getTime() ? <div>VENCIDO</div> : null}
             </div>
@@ -88,9 +87,9 @@ export const Medicines = () => {
             <span>Fecha de vencimiento:</span>
             <Moment date={moment(liquid.expiredDate).add(1, 'd')} format='MM/YYYY'/>
             </li>
-            <li><Link to={'/lista/L,' + liquid._id}>{liquid.name}</Link>
-            <button onClick={()=>handleDelete(liquid._id, 'L')}>🗑️</button>
-            <Link to={'/agregar/L,' + liquid._id}>🔄</Link>
+            <li><Link to={'/L,' + liquid._id}>{liquid.name}</Link>
+            <button  className='btn btn-danger' onClick={()=>handleDelete(liquid._id, 'L')}>🗑️</button>
+            <Link  className='btn btn-secondary' to={'/agregar/L,' + liquid._id}>🔄</Link>
             </li>
             {new Date(liquid.expiredDate).getTime() <= new Date().getTime() ? <div>VENCIDO</div> : null}
             </div>
@@ -107,9 +106,9 @@ export const Medicines = () => {
             </li>
             
             <li >
-            <Link to={'/lista/P,' + psycho._id}>{psycho.name}</Link>
-            <button onClick={()=>handleDelete(psycho._id, 'P')}>🗑️</button>
-            <Link to={'/agregar/P,' + psycho._id}>🔄</Link>
+            <Link to={'/P,' + psycho._id}>{psycho.name}</Link>
+            <button className='btn btn-danger' onClick={()=>handleDelete(psycho._id, 'P')}>🗑️</button>
+            <Link className='btn btn-secondary' to={'/agregar/P,' + psycho._id}>🔄</Link>
             </li>
             
             {new Date(psycho.expiredDate).getTime() <= new Date().getTime() ? <div>VENCIDO</div> : null}

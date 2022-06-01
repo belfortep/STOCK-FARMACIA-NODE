@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import {Navbar} from '../../components/Navbar/Navbar';
 import "./login.css";
 
 export const Login = () => {
@@ -24,7 +25,7 @@ export const Login = () => {
     try {
       const res = await axios.post("/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-      navigate('/lista')
+      navigate('/')
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
@@ -32,6 +33,8 @@ export const Login = () => {
 
 
   return (
+    <>
+    <Navbar/>
     <div className="center-screen container">
      <div className="row">
       <div className="col s5">
@@ -63,5 +66,6 @@ export const Login = () => {
         </div>
         </div>
     </div>
+    </>
   );
 };

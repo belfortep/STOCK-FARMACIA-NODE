@@ -18,10 +18,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/*<Route path='/' element={<Home />} />*/}
-          <Route path='/lista' element={<Medicines />} />
+          <Route path='/' element={<Medicines />} />
           {/**<Route path='/register' element={<Register />} /> */}
           <Route path='/login' element={<Login />} />
-          <Route path='/lista/:id' element={<Medicine />} />
+          <Route path='/:id' element={<Medicine />} />
           <Route path='/agregar' element={<CreateMedicine />} />
           <Route path='/agregar/:id' element={<CreateMedicine />} />
         </Routes>
