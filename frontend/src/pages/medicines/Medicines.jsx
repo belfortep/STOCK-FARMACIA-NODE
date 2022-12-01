@@ -7,6 +7,7 @@ import { Footer } from '../../components/Footer/Footer'
 import Moment from 'react-moment'
 import moment from 'moment';
 import { AuthContext } from '../../context/AuthContext';
+import './medicines.css'
 export const Medicines = () => {
   const [solids, setSolids] = useState([]);
   const [liquids, setLiquids] = useState([]);
@@ -57,61 +58,62 @@ export const Medicines = () => {
   return (
     <>
     {user ? <><Navbar/>
-      <h1>Medicamentos</h1>
-      <h2>Solidos</h2>
-      <div>
-        <ul>
+      <h1 className='medicine-title'>Medicamentos</h1>
+      <h2 className='medicine-sub-title'>Solidos</h2>
+      <div className='medicine-container'>
+        <ul className='medicine-sub-container'>
           {solids.map(solid =>(
             
-            <div  key={solid._id}>
-            <li>
+            <div className='medicine-sub-container-div' key={solid._id}>
+            <li  className='medicine-date-container'>
             
-            <span>Fecha de vencimiento:</span>
-            <Moment date={moment(solid.expiredDate).add(1, 'd')} format='MM/YYYY'/>
+            <span className='medicine-date-text'>Fecha de vencimiento:</span>
+            <Moment className='medicine-date' date={moment(solid.expiredDate).add(1, 'd')} format='MM/YYYY'/>
             </li>
-            <li>
-            <Link to={'/S,' + solid._id}>{solid.name}</Link>
-            <button className='btn btn-danger' onClick={()=>handleDelete(solid._id, 'S')}>🗑️</button>
-            <Link className='btn btn-secondary' to={'/agregar/S,' + solid._id}>🔄</Link>
+            <li className='medicine-name-container'>
+            <Link className='medicine-name' to={'/S,' + solid._id}>{solid.name}</Link>
+            <button className='btn btn-danger button-medicine-delete' onClick={()=>handleDelete(solid._id, 'S')}>🗑️</button>
+            <Link className='btn btn-secondary button-medicine-update' to={'/agregar/S,' + solid._id}>🔄</Link>
             </li>
-            {new Date(solid.expiredDate) <= new Date().getTime() ? <div>VENCIDO</div> : null}
+            {new Date(solid.expiredDate) <= new Date().getTime() ? <div className='medicine-expired-text'>VENCIDO</div> : null}
             </div>
           ))}
         </ul>
-        <h2>Liquidos</h2>
-        <ul>
+        <h2 className='sub-title-medicine'>Liquidos</h2>
+        <ul className='medicine-sub-container'>
           {liquids.map(liquid =>(
             
-            <div  key={liquid._id}>
-            <li>
-            <span>Fecha de vencimiento:</span>
-            <Moment date={moment(liquid.expiredDate).add(1, 'd')} format='MM/YYYY'/>
+            <div className='medicine-sub-container-div' key={liquid._id}>
+            <li className='medicine-date-container'>
+            <span className='medicine-date-text'>Fecha de vencimiento:</span>
+            <Moment className='medicine-date' date={moment(liquid.expiredDate).add(1, 'd')} format='MM/YYYY'/>
             </li>
-            <li><Link to={'/L,' + liquid._id}>{liquid.name}</Link>
-            <button  className='btn btn-danger' onClick={()=>handleDelete(liquid._id, 'L')}>🗑️</button>
-            <Link  className='btn btn-secondary' to={'/agregar/L,' + liquid._id}>🔄</Link>
+            <li className='medicine-name-container'>
+              <Link className='medicine-name' to={'/L,' + liquid._id}>{liquid.name}</Link>
+            <button  className='btn btn-danger button-medicine-delete' onClick={()=>handleDelete(liquid._id, 'L')}>🗑️</button>
+            <Link  className='btn btn-secondary button-medicine-update' to={'/agregar/L,' + liquid._id}>🔄</Link>
             </li>
-            {new Date(liquid.expiredDate).getTime() <= new Date().getTime() ? <div>VENCIDO</div> : null}
+            {new Date(liquid.expiredDate).getTime() <= new Date().getTime() ? <div className='medicine-expired-text'>VENCIDO</div> : null}
             </div>
             
           ))}
         </ul>
-        <h2>Psicofarmacos</h2>
-        <ul>
+        <h2 className='sub-title-medicine'>Psicofarmacos</h2>
+        <ul className='medicine-sub-container'>
           {psychos.map(psycho =>(
-            <div key={psycho._id}>
-            <li>
-            <span>Fecha de vencimiento:</span>
-            <Moment date={moment(psycho.expiredDate).add(1, 'd')} format='MM/YYYY'></Moment>
+            <div className='medicine-sub-container-div' key={psycho._id}>
+            <li className='medicine-date-container'>
+            <span className='medicine-date-text'>Fecha de vencimiento:</span>
+            <Moment className='medicine-date' date={moment(psycho.expiredDate).add(1, 'd')} format='MM/YYYY'></Moment>
             </li>
             
-            <li >
-            <Link to={'/P,' + psycho._id}>{psycho.name}</Link>
-            <button className='btn btn-danger' onClick={()=>handleDelete(psycho._id, 'P')}>🗑️</button>
-            <Link className='btn btn-secondary' to={'/agregar/P,' + psycho._id}>🔄</Link>
+            <li className='medicine-name-container'>
+            <Link className='medicine-name' to={'/P,' + psycho._id}>{psycho.name}</Link>
+            <button className='btn btn-danger button-medicine-delete' onClick={()=>handleDelete(psycho._id, 'P')}>🗑️</button>
+            <Link className='btn btn-secondary button-medicine-update' to={'/agregar/P,' + psycho._id}>🔄</Link>
             </li>
             
-            {new Date(psycho.expiredDate).getTime() <= new Date().getTime() ? <div>VENCIDO</div> : null}
+            {new Date(psycho.expiredDate).getTime() <= new Date().getTime() ? <div className='medicine-expired-text'>VENCIDO</div> : null}
             
             </div>
           ))}

@@ -2,11 +2,12 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { Footer } from '../../components/Footer/Footer';
 import { Navbar } from '../../components/Navbar/Navbar';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 export const CreateMedicine = () => {
     const params = useParams();
     const {user} = useContext(AuthContext);
+    const navigate = useNavigate();
     let type = '';
     if (typeof params.id === 'string') {
         type = params.id.split(',');
@@ -133,7 +134,7 @@ export const CreateMedicine = () => {
             }
         }
 
-
+        navigate('/')
     }
     useEffect(() => {
         if (params && user) {
