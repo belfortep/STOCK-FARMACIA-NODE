@@ -30,6 +30,9 @@ export const Navbar = () => {
             <Link className="nav-link" to={'/login'}>Login</Link>
             </li>
             <li className="nav-item">
+            <Link className="nav-link" to={'/por_fecha'}>Por Fecha</Link>
+            </li>
+            <li className="nav-item">
             <Link className="nav-link"  onClick={handleClick} to={'/login'}>Logout</Link>
             </li>
           </ul>

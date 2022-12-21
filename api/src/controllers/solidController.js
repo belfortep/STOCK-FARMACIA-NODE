@@ -1,7 +1,25 @@
 const Solid = require('../models/Solid');
 const { HttpCodesEnum } = require('../enum/httpCodes');
 
+const getSolidsBetweenDate = async (req, res) => {
+    try {
+
+        const solids = await Solid.find({ expiredDate: { $gte: req.query.startDate, $lte: req.query.endDate}}).sort({ expiredDate: 1});
+
+        return res.status(HttpCodesEnum.OK).json(solids);
+
+    } catch (err) {
+        return res.status(HttpCodesEnum.SERVER_INTERNAL_ERROR).json({message: err.message});
+    }
+}
+
+
 const getAllSolids = async (req, res) => {
+
+    if (req.query.startDate != undefined && req.query.endDate != undefined) {
+        return getSolidsBetweenDate(req, res);
+    }
+
     try {
 
         const solids = await Solid.find();
@@ -73,6 +91,7 @@ const deleteSolid = async (req, res) => {
 }
 
 
+ 
 
 
 
