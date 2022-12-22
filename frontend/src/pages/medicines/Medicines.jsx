@@ -29,13 +29,6 @@ export const Medicines = () => {
     setPsychos(res.data);
   };
 
-  const fetchSolidBetweenDates = async (startDate, endDate) => {
-    startDate = '2023-05-10'
-    endDate = '2023-10-10'
-    const res = await axios.get('/api/solid?startDate=' + startDate + '&endDate=' + endDate);
-    setSolids(res.data);
-  }
-
   const fetchMedicines = async()=>{
     await fetchSolid();
     await fetchLiquid();
@@ -66,8 +59,6 @@ export const Medicines = () => {
     <>
     {user ? <><Navbar/>
       <h1 className='medicine-title'>Medicamentos</h1>
-      <input placeholder='Inicio' id='startDate' type='month'  /><br />
-      <input placeholder='Fin' id='endDate' type='month'  /><br />
       <h2 className='medicine-sub-title'>Solidos</h2>
       <div className='medicine-container'>
         <ul className='medicine-sub-container'>

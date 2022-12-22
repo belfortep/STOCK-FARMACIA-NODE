@@ -11,8 +11,8 @@ import "./medicineByDate.css";
 
 export const MedicineByDate = () => {
   const [dates, setDates] = useState({
-        startDate: '',
-        endDate: ''
+    startDate: "",
+    endDate: "",
   });
   const [solids, setSolids] = useState([]);
   const [liquids, setLiquids] = useState([]);
@@ -20,33 +20,25 @@ export const MedicineByDate = () => {
   const { user } = useContext(AuthContext);
 
   const fetchBetweenDates = async (startDate, endDate) => {
+    const solidRes = await axios.get(
+      "/api/solid?startDate=" + startDate + "&endDate=" + endDate
+    );
 
+    const liquidRes = await axios.get(
+      "/api/liquid?startDate=" + startDate + "&endDate=" + endDate
+    );
 
+    const psychoRes = await axios.get(
+      "/api/psycho?startDate=" + startDate + "&endDate=" + endDate
+    );
 
-        const solidRes = await axios.get(
-                "/api/solid?startDate=" + startDate + "&endDate=" + endDate
-        );
-
-        /*const liquidRes = await axios.get(
-                "/api/liquid?startDate=" + startDate + "&endDate=" + endDate
-        );
-
-        const psychoRes = await axios.get(
-                "/api/psycho?startDate=" + startDate + "&endDate=" + endDate
-        );*/
-
-        setSolids(solidRes.data);
-        //
-        //
-        
-  }
+    setSolids(solidRes.data);
+    setLiquids(liquidRes.data);
+    setPsychos(psychoRes.data);
+  };
 
   const fetchMedicines = async () => {
-          
-        console.log(dates.startDate);
-        console.log(dates.endDate)
     await fetchBetweenDates(dates.startDate, dates.endDate);
-
   };
 
   const handleDelete = async (id, type) => {
@@ -67,9 +59,23 @@ export const MedicineByDate = () => {
         <>
           <Navbar />
           <h1 className="medicine-title">Medicamentos</h1>
-          <input placeholder="Inicio" id="startDate" type="month" onChange={(e) => setDates(prev => ({ ...prev, startDate: e.target.value }))}/>
+          <input
+            placeholder="Inicio"
+            id="startDate"
+            type="month"
+            onChange={(e) =>
+              setDates((prev) => ({ ...prev, startDate: e.target.value }))
+            }
+          />
           <br />
-          <input placeholder="Fin" id="endDate" type="month" onChange={(e) => setDates(prev => ({ ...prev, endDate: e.target.value }))}/>
+          <input
+            placeholder="Fin"
+            id="endDate"
+            type="month"
+            onChange={(e) =>
+              setDates((prev) => ({ ...prev, endDate: e.target.value }))
+            }
+          />
           <br />
           <button onClick={() => fetchMedicines()}>Buscar</button>
           <h2 className="medicine-sub-title">Solidos</h2>

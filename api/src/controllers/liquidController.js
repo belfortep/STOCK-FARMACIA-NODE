@@ -1,7 +1,25 @@
 const Liquid = require('../models/Liquid');
 const { HttpCodesEnum } = require('../enum/httpCodes');
 
+
+const getLiquidsBetweenDate = async (req, res) => {
+    try {
+
+        const liquids = await Liquid.find({ expiredDate: { $gte: req.query.startDate, $lte: req.query.endDate}}).sort({ expiredDate: 1});
+
+        return res.status(HttpCodesEnum.OK).json(liquids);
+
+    } catch (err) {
+        return res.status(HttpCodesEnum.SERVER_INTERNAL_ERROR).json({message: err.message});
+    }
+}
+
 const getAllLiquids = async (req, res) => {
+
+    if (req.query.startDate != undefined && req.query.endDate != undefined) {
+        return getLiquidsBetweenDate(req, res);
+    }
+
     try {
 
         const liquids = await Liquid.find();

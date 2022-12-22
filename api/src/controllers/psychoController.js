@@ -1,7 +1,26 @@
 const Psycho = require('../models/Psycho');
 const { HttpCodesEnum } = require('../enum/httpCodes');
 
+const getPsychosBetweenDate = async (req, res) => {
+    try {
+
+        const psychos = await Psycho.find({ expiredDate: { $gte: req.query.startDate, $lte: req.query.endDate}}).sort({ expiredDate: 1});
+
+        return res.status(HttpCodesEnum.OK).json(psychos);
+
+    } catch (err) {
+        return res.status(HttpCodesEnum.SERVER_INTERNAL_ERROR).json({message: err.message});
+    }
+}
+
+
+
 const getAllPsychos = async (req, res) => {
+
+    if (req.query.startDate != undefined && req.query.endDate != undefined) {
+        return getPsychosBetweenDate(req, res);
+    }
+
     try {
 
         const psychos = await Psycho.find();
