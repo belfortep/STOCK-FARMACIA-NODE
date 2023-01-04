@@ -10,6 +10,7 @@ import { Medicines } from './pages/medicines/Medicines';
 import { Login } from './pages/login/Login';
 import { CreateMedicine } from './pages/createMedicine/CreateMedicine';
 import { MedicineByDate } from './pages/medicineByDate/MedicineByDate';
+import './app.css'
 
 
 

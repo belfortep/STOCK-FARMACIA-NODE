@@ -80,7 +80,7 @@ export const Medicine = () => {
       <Link  className='btn btn-secondary' to={'/agregar/' + type[0] + ',' + medicine._id}>🔄</Link>
     </div>
       : <div>Not found</div>}
-      <Footer/>
+      
     </>
   )
 }
